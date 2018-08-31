@@ -17,6 +17,7 @@ def get_action(configuration, kappa, lamb):
 	action += lamb * np.sum((configuration ** 2 - 1.0) ** 2 - 1.0)
 	return action
 
+
 def get_force(configuration, kappa, lamb):
 	'''
 	calculates force of the action $f_x = \partial S / \partial \phi_x$
@@ -31,3 +32,13 @@ def get_force(configuration, kappa, lamb):
 		force += -2 * kappa * (np.roll(configuration, shift = 1, axis = dim) + np.roll(configuration, shift = -1, axis = dim))
 	force += 4 * lamb * (configuration ** 3 - configuration)
 	return force
+
+
+def get_random_conf(shape, mode='cold'):
+	if mode == 'cold':
+		return np.zeros(shape)
+	return np.random.normal(loc=0.0, scale=1.0, size=shape)
+
+
+def get_random_momenta(shape):
+	return np.random.normal(loc=0.0, scale=1.0, shape)

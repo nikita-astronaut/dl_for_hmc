@@ -25,6 +25,7 @@ def get_force(configuration, kappa, lamb):
 	kappa: action parameter
 	lamb: action parameter lambda
 	'''
+
 	force = 2 * configuration
 	ndims = len(configuration.shape)
 
@@ -41,4 +42,12 @@ def get_random_conf(shape, mode='cold'):
 
 
 def get_random_momenta(shape):
-	return np.random.normal(loc=0.0, scale=1.0, shape)
+	return np.random.normal(loc=0.0, scale=1.0, size=shape)
+
+
+def get_n_moment_field(conf, n, **kwargs):
+	return np.mean(conf ** n), 'moment ' + str(n)
+
+
+def get_std(conf, **kwargs):
+	return np.std(conf), 'std '
